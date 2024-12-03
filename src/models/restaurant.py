@@ -23,8 +23,8 @@ class Restaurant:
             # BUG CORRIGIDO: Ao abrir a quantidade de clientes deve ser 0 e nao -2
             self.number_served = 0
             return f"{self.restaurant_name} agora está aberto!"
-        else:
-            return f"{self.restaurant_name} já está aberto!"
+        # MELHORIA: Removendo o else desnecessário
+        return f"{self.restaurant_name} já está aberto!"
 
     def close_restaurant(self):
         """Imprima uma mensagem indicando que o restaurante está fechado para negócios."""
@@ -32,8 +32,8 @@ class Restaurant:
             self.open = False
             self.number_served = 0
             return f"{self.restaurant_name} agora está fechado!"
-        else:
-            return f"{self.restaurant_name} já está fechado!"
+        # MELHORIA: Removendo o else desnecessário
+        return f"{self.restaurant_name} já está fechado!"
 
     def set_number_served(self, total_customers):
         """Defina o número total de pessoas atendidas por este restaurante até o momento."""
@@ -41,8 +41,8 @@ class Restaurant:
             # BUG CORRIGIDO: Nao retornava nenhuma mensagem avisando da alteracao
             self.number_served = total_customers
             return f"{self.restaurant_name} possui {self.number_served} pessoas atendidas"
-        else:
-            return f"{self.restaurant_name} está fechado!"
+        # MELHORIA: Removendo o else desnecessário
+        return f"{self.restaurant_name} está fechado!"
 
     def increment_number_served(self, more_customers):
         """Aumenta número total de clientes atendidos por este restaurante."""
@@ -50,5 +50,6 @@ class Restaurant:
         if self.open:
             self.number_served = self.number_served + more_customers
             return f"{self.restaurant_name} agora possui {self.number_served} clientes atendidos"
-        else:
-            return f"{self.restaurant_name} está fechado!"
+
+        # MELHORIA: Removendo o else desnecessário
+        return f"{self.restaurant_name} está fechado!"
