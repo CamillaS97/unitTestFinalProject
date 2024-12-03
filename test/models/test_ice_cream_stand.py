@@ -31,6 +31,13 @@ class TestIceCreamStand:
         result = self.ice_cream_stand.find_flavor("Nutella")
         assert result == expected_result
 
+    def test_find_flavor_without_stock(self):
+        exepected_result = "Estamos sem estoque atualmente!"
+        new_stand = IceCreamStand("John's", "Sorveteria", [])
+        new_stand.open_restaurant()
+        result = new_stand.find_flavor("Ninho")
+        assert result == exepected_result
+
     def test_add_flavor(self):
         expected_result = "Nutella adicionado ao estoque!"
         self.ice_cream_stand.open_restaurant()

@@ -40,9 +40,21 @@ class TestRestaurant:
         result = self.restaurant.set_number_served(8)
         assert result == expected_result
 
+    def test_set_number_served_closed_restaurant(self):
+        expected_result = 'Big Belly Burger está fechado!'
+        self.restaurant.close_restaurant()
+        result = self.restaurant.set_number_served(8)
+        assert result == expected_result
+
     def test_increment_number_served(self):
         expected_result = 'Big Belly Burger agora possui 12 clientes atendidos'
         self.restaurant.open_restaurant()
         self.restaurant.set_number_served(8)
+        result = self.restaurant.increment_number_served(4)
+        assert result == expected_result
+
+    def test_increment_number_served_closed_restaurante(self):
+        expected_result = 'Big Belly Burger está fechado!'
+        self.restaurant.close_restaurant()
         result = self.restaurant.increment_number_served(4)
         assert result == expected_result
