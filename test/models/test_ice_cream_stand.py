@@ -42,3 +42,10 @@ class TestIceCreamStand:
         self.ice_cream_stand.open_restaurant()
         result = self.ice_cream_stand.add_flavor("Ninho")
         assert result == expected_result
+
+    def test_add_first_flavor(self):
+        exepected_result = "Nutella adicionado ao estoque!"
+        new_stand = IceCreamStand("John's", "Sorveteria", [])
+        new_stand.open_restaurant()
+        result = new_stand.add_flavor("Nutella")
+        assert result == exepected_result

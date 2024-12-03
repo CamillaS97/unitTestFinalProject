@@ -20,8 +20,8 @@ class IceCreamStand(Restaurant):
             result = "No momento temos os seguintes sabores de sorvete disponíveis: "
             result += ", ".join(self.flavors)
             return result
-        else:
-            return "Estamos sem estoque atualmente!"
+        # MELHORIA: Removendo o else desnecessário
+        return "Estamos sem estoque atualmente!"
 
     def find_flavor(self, flavor):
         """Verifica se o sabor informado está disponível."""
@@ -31,17 +31,20 @@ class IceCreamStand(Restaurant):
                 return f"Temos no momento {flavor}!"
             else:
                 return f"Não temos no momento {flavor}!"
-        else:
-            return "Estamos sem estoque atualmente!"
+        # MELHORIA: Removendo o else desnecessário
+        return "Estamos sem estoque atualmente!"
 
     def add_flavor(self, flavor):
         """Add o sabor informado ao estoque."""
         if self.flavors:
-            if flavor in self.flavors:
-                # MELHORIA: Removendo \n que estava sendo impresso e achei melhor tirar do que deixar
-                return "Sabor já disponivel!"
-            else:
+            # MELHORIA 1: Mudando pra um if que verifica se o sabor NÃO está na lista pra deixar o codigo mais compacto
+            if flavor not in self.flavors:
                 self.flavors.append(flavor)
                 return f"{flavor} adicionado ao estoque!"
         else:
-            return "Estamos sem estoque atualmente!"
+            # MELHORIA 2: Não faz sentido adicionar sabores apenas se a lista já existir, pode ser o caso de ser a
+            # primeira adição de sabor, então esse else funciona como resolução para a inexistencia de sabores na lista
+            self.flavors.append(flavor)
+            return f"{flavor} adicionado ao estoque!"
+
+        return "Sabor já disponivel!"
