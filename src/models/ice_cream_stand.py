@@ -15,9 +15,10 @@ class IceCreamStand(Restaurant):
     def flavors_available(self):
         """Percorra a lista de sabores disponíveis e imprima."""
         if self.flavors:
-            result = "\nNo momento temos os seguintes sabores de sorvete disponíveis:"
-            for flavor in self.flavors:
-                result += f"\t-{flavor}"
+            # MELHORIA: Alterando o for para um join para que o código fique mais limpo e a lista seja separada por
+            # virgulas
+            result = "No momento temos os seguintes sabores de sorvete disponíveis: "
+            result += ", ".join(self.flavors)
             return result
         else:
             return "Estamos sem estoque atualmente!"
@@ -25,10 +26,11 @@ class IceCreamStand(Restaurant):
     def find_flavor(self, flavor):
         """Verifica se o sabor informado está disponível."""
         if self.flavors:
+            #BUG CORRIGIDO: Ambos if e else retornavam a lista com todos os sabores e não apenas o sabor procurado!
             if flavor in self.flavors:
-                return f"Temos no momento {self.flavors}!"
+                return f"Temos no momento {flavor}!"
             else:
-                return f"Não temos no momento {self.flavors}!"
+                return f"Não temos no momento {flavor}!"
         else:
             return "Estamos sem estoque atualmente!"
 
@@ -36,7 +38,8 @@ class IceCreamStand(Restaurant):
         """Add o sabor informado ao estoque."""
         if self.flavors:
             if flavor in self.flavors:
-                return "\nSabor já disponivel!"
+                # MELHORIA: Removendo \n que estava sendo impresso e achei melhor tirar do que deixar
+                return "Sabor já disponivel!"
             else:
                 self.flavors.append(flavor)
                 return f"{flavor} adicionado ao estoque!"
